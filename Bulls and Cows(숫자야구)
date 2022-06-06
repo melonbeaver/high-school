@@ -1,0 +1,90 @@
+#define CRT_SECURE_NO_WARNNINGS
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int logics(int a, int b, int c);
+int question[3], answer[3];
+int strike, ball;
+int count = 0;
+
+int main()
+{
+	srand(time(NULL));
+	printf("**1학년 6반 15번 최대규**\n");
+	printf("****야구게임 시작!!****\n");
+	answer[0] = rand() % 9 + 1;
+	answer[1] = rand() % 9 + 1;
+	answer[2] = rand() % 9 + 1;
+	while (answer[0] == answer[1])
+	{
+		answer[1] = rand() % 9 + 1;
+	}
+
+	while (answer[0] == answer[2] && answer[1] == answer[2])
+	{
+		answer[2] = rand() % 9 + 1;
+	}
+	for (int i = 1; i <= 9; i++)
+	{
+		printf("\n[%d회] 3개의 숫자 선택 : ", i);
+		scanf_s("%d %d %d", &question[0], &question[1], &question[2]);
+		logics(question[0], question[1], question[2]);
+		printf("스트라이크 : %d, 볼 : %d", strike, ball);
+		count++;
+		if (strike == 3)
+		{
+			printf("\n당신은 이겼습니다.");
+			break;
+		}
+	}
+	if (count == 9)
+	{
+		printf("\n당신은 졌습니다.");
+	}
+}
+
+int logics(int a, int b, int c)
+{
+	strike = 0;
+	ball = 0;
+	if (a == answer[0])
+	{
+		strike++;
+	}
+	else if (a == answer[1])
+	{
+		ball++;
+	}
+	else if (a == answer[2])
+	{
+		ball++;
+	}
+
+	if (b == answer[0])
+	{
+		ball;
+	}
+	else if (b == answer[1])
+	{
+		strike++;
+	}
+	else if (b == answer[2])
+	{
+		ball++;
+	}
+
+	if (c == answer[0])
+	{
+		ball++;
+	}
+	else if (c == answer[1])
+	{
+		ball++;
+	}
+	else if (c == answer[2])
+	{
+		strike++;
+	}
+	return (strike, ball);
+}
